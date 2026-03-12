@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Ben | Awesome Math</title>
+    
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --color-primary: #800020; /* Burgundy */
+            --color-primary-dark: #5a0016;
+            --color-secondary: #f5f5f5; /* Light Gray */
+            --color-text: #333333;
+            --color-white: #ffffff;
+            --font-heading: 'Bebas Neue', cursive;
+            --font-body: 'Roboto', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION BAR --- */
+        nav {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: #d1d1d1;
+        }
+
+        /* Hamburger Menu (Mobile) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- HERO HEADER --- */
+        header {
+            background-color: var(--color-white);
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            border-bottom: 5px solid var(--color-primary);
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: var(--transition);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn:hover {
+            background-color: var(--color-primary-dark);
+            border-color: var(--color-primary-dark);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 10px 10px 0px var(--color-primary);
+        }
+
+        /* --- SECTIONS COMMON --- */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 3rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- ABOUT ME --- */
+        .about-content {
+            background: var(--color-white);
+            padding: 2.5rem;
+            border-left: 5px solid var(--color-primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* --- CAREER TIMELINE --- */
+        .career-item {
+            display: flex;
+            margin-bottom: 2rem;
+            background: var(--color-white);
+            padding: 1.5rem;
+            border-radius: 4px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .career-year {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            min-width: 120px;
+        }
+
+        .career-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- PROJECTS --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            border: 1px solid #ddd;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+        }
+
+        /* --- RESOURCES (UPLOAD) --- */
+        .upload-area {
+            background: var(--color-white);
+            border: 2px dashed #ccc;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--color-primary);
+            background-color: #fff8f8;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-status {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            height: 1.5rem;
+        }
+
+        /* --- MINI GAMES --- */
+        .game-container {
+            background: var(--color-white);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 2px solid var(--color-primary);
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .math-problem {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin: 1rem 0;
+            color: var(--color-text);
+        }
+
+        .game-input {
+            padding: 0.8rem;
+            font-size: 1.2rem;
+            width: 150px;
+            text-align: center;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+
+        .game-btn {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .game-btn:hover {
+            background: var(--color-primary-dark);
+        }
+
+        .game-message {
+            margin-top: 1rem;
+            height: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-primary);
+                padding: 1rem 0;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .hero-image {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">Teacher Ben</div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#career">Career</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#games">Mini Games</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER / HERO -->
+    <header id="home">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>AWESOME MATH</h1>
+                <h2>Grade 8A 25/26 Class</h2>
+                <p>Welcome to the digital classroom of Teacher Ben. Exploring the universe through geometry, algebra, and creativity. Let's make numbers come alive!</p>
+                <a href="#games" class="btn">Try a Math Challenge</a>
+            </div>
+            <div class="hero-image">
+                <!-- Using the specific image provided in the prompt -->
+                <img src="https://z-cdn-media.chatglm.cn/files/2af22e78-1f3a-4e82-ae7e-9f103ba5536c.png?auth_key=1873038356-fdd9e4250ed047e180530a40e8142d3c-0-3fa6cc7c0d48c30a716b27a3f41884ee" alt="Teacher Ben Math Illustration">
+            </div>
+        </div>
+    </header>
+
+    <!-- ABOUT ME -->
+    <section id="about">
+        <h2 class="section-title">Who Is Teacher Ben?</h2>
+        <div class="about-content">
+            <p><strong>Hello! I am Teacher Ben.</strong></p>
+            <br>
+            <p>I am a passionate mathematics educator dedicated to the Grade 8A 25/26 Class. My philosophy is simple: Math is not just about numbers on a board; it's about understanding the patterns of the world.</p>
+            <br>
+            <p>Whether we are proving the Pythagorean theorem (a² + b² = c²) or analyzing geometric data, I believe in a classroom that blends traditional problem-solving with modern digital tools. My goal is to inspire "Awesome Math" moments every single day.</p>
+        </div>
+    </section>
+
+    <!-- CAREER -->
+    <section id="career">
+        <h2 class="section-title">My Career</h2>
+        
+        <div class="career-item">
+            <div class="career-year">2023 - Present</div>
+            <div class="career-details">
+                <h3>Lead Math Instructor</h3>
+                <p>Currently teaching Grade 8A. Developing the "Awesome Math" curriculum and integrating digital visualization tools into the classroom.</p>
+            </div>
+        </div>
+
+        <div class="career-item">
+            <div class="career-year">2020 - 2023</div>
+            <div class="career-details">
+                <h3>STEM Coordinator</h3>
+                <p>Organized school-wide science fairs and math olympiads. Focused on project-based learning and real-world geometry applications.</p>
+            </div>
+        </div>
+
+        <div class="career-item">
+            <div class="career-year">2018 - 2020</div>
+            <div class="career-details">
+                <h3>Junior Math Teacher</h3>
+                <p>Started my journey teaching algebra basics. Introduced interactive learning modules for students struggling with abstract concepts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <h2 class="section-title">Project Demonstrations</h2>
+        <div class="project-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <h3>Geometry Visualizer</h3>
+                <p>An interactive tool allowing students to rotate cubes and spheres to understand volume and surface area in real-time 3D space.</p>
+                <br>
+                <a href="#" class="btn" style="font-size: 0.8rem; padding: 0.5rem 1rem;">View Demo</a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <h3>8A Data Dashboard</h3>
+                <p>A class performance tracker. Shows average grades for algebra, geometry, and statistics, helping identify areas for improvement.</p>
+                <br>
+                <a href="#" class="btn" style="font-size: 0.8rem; padding: 0.5rem 1rem;">View Demo</a>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <h3>The Pi Day Challenge</h3>
+                <p>A school-wide event website featuring history of π, calculation contests, and formula memorization games.</p>
+                <br>
+                <a href="#" class="btn" style="font-size: 0.8rem; padding: 0.5rem 1rem;">View Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPLOAD RESOURCES -->
+    <section id="resources">
+        <h2 class="section-title">Upload Resources</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Students can submit homework or projects here.</p>
+        
+        <div class="upload-area" id="dropZone">
+            <div class="upload-icon">📂</div>
+            <h3>Drag & Drop files here</h3>
+            <p>or click to browse</p>
+            <input type="file" id="fileInput" class="file-input" multiple>
+            <div class="upload-status" id="uploadStatus"></div>
+        </div>
+    </section>
+
+    <!-- MINI GAMES -->
+    <section id="games">
+        <h2 class="section-title">Mini Games</h2>
+        <div class="game-container">
+            <h3>Speed Math Challenge</h3>
+            <p>Solve as many problems as you can!</p>
+            
+            <div class="game-stats">
+                <span>Score: <span id="score">0</span></span>
+                <span>Time: <span id="timer">30</span>s</span>
+            </div>
+
+            <div class="math-problem" id="problem">Ready?</div>
+            
+            <div id="gameControls">
+                <input type="number" id="answerInput" class="game-input" placeholder="?" disabled>
+                <button class="game-btn" id="startBtn" onclick="startGame()">Start Game</button>
+                <button class="game-btn" id="submitBtn" onclick="checkAnswer()" style="display:none;">Submit</button>
+            </div>
+            
+            <div class="game-message" id="gameMessage"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Teacher Ben | Awesome Math Grade 8A</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.7;">Designed with HTML, CSS, & JS</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // --- NAVIGATION TOGGLE ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // --- UPLOAD SIMULATION ---
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const uploadStatus = document.getElementById('uploadStatus');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', () => {
+            handleFiles(fileInput.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                uploadStatus.innerText = `Selected: ${files[0].name} (Uploading...)`;
+                // Simulate upload delay
+                setTimeout(() => {
+                    uploadStatus.innerText = `Success: ${files[0].name} uploaded!`;
+                    uploadStatus.style.color = "green";
+                }, 1500);
+            }
+        }
+
+        // --- MINI GAME LOGIC (Speed Math) ---
+        let score = 0;
+        let timeLeft = 30;
+        let gameInterval;
+        let currentAnswer = 0;
+        let isPlaying = false;
+
+        const scoreEl = document.getElementById('score');
+        const timerEl = document.getElementById('timer');
+        const problemEl = document.getElementById('problem');
+        const answerInput = document.getElementById('answerInput');
+        const startBtn = document.getElementById('startBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const gameMessage = document.getElementById('gameMessage');
+
+        function generateProblem() {
+            const operators = ['+', '-', '*'];
+            const operator = operators[Math.floor(Math.random() * operators.length)];
+            let num1, num2;
+
+            if (operator === '*') {
+                num1 = Math.floor(Math.random() * 10) + 1;
+                num2 = Math.floor(Math.random() * 10) + 1;
+            } else {
+                num1 = Math.floor(Math.random() * 50) + 1;
+                num2 = Math.floor(Math.random() * 50) + 1;
+            }
+
+            if (operator === '+') currentAnswer = num1 + num2;
+            if (operator === '-') currentAnswer = num1 - num2;
+            if (operator === '*') currentAnswer = num1 * num2;
+
+            problemEl.innerText = `${num1} ${operator} ${num2}`;
+        }
+
+        function startGame() {
+            if (isPlaying) return;
+            
+            // Reset state
+            score = 0;
+            timeLeft = 30;
+            scoreEl.innerText = score;
+            timerEl.innerText = timeLeft;
+            gameMessage.innerText = "";
+            isPlaying = true;
+
+            // UI updates
+            startBtn.style.display = 'none';
+            submitBtn.style.display = 'inline-block';
+            answerInput.disabled = false;
+            answerInput.focus();
+
+            generateProblem();
+
+            // Timer loop
+            gameInterval = setInterval(() => {
+                timeLeft--;
+                timerEl.innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function checkAnswer() {
+            if (!isPlaying) return;
+
+            const userVal = parseInt(answerInput.value);
+            if (userVal === currentAnswer) {
+                score += 10;
+                scoreEl.innerText = score;
+                gameMessage.innerText = "Correct!";
+                gameMessage.style.color = "green";
+                answerInput.value = '';
+                generateProblem();
+            } else {
+                gameMessage.innerText = "Wrong, try again.";
+                gameMessage.style.color = "red";
+                answerInput.value = '';
+                answerInput.focus();
+            }
+        }
+
+        function endGame() {
+            clearInterval(gameInterval);
+            isPlaying = false;
+            problemEl.innerText = "Game Over!";
+            gameMessage.innerText = `Final Score: ${score}`;
+            gameMessage.style.color = "var(--color-primary)";
+            
+            answerInput.disabled = true;
+            submitBtn.style.display = 'none';
+            startBtn.innerText = "Play Again";
+            startBtn.style.display = 'inline-block';
+        }
+
+        // Allow "Enter" key to submit answer
+        answerInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkAnswer();
+            }
+        });
+    </script>
+</body>
+</html>
